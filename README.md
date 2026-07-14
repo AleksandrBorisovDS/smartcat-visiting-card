@@ -2,8 +2,8 @@
 
 A tiny, self-contained prototype I built to go with my application for the **AI Solutions Builder** role at SmartCat. It shows — rather than tells — how I turn business problems into working AI tools.
 
-**▶ Live demo:** `https://<your-github-username>.github.io/smartcat-visiting-card/`
-*(fill in after publishing — steps below)*
+**▶ Live demo:** ` https://aleksandrborisovds.github.io/smartcat-visiting-card/`
+
 
 ## What's inside
 
