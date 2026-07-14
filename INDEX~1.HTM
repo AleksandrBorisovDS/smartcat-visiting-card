@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aleksandr Borisov — AI Solutions Builder</title>
+<style>
+:root{color-scheme:light;--accent:#6A1EF2;--accent2:#8b5cf6;--ink:#17131f;--muted:#6b6b7b;
+  --bg:#faf9ff;--card:#fff;--line:#e9e6f5;--ok:#16a34a;--warn:#d97706}
+*{box-sizing:border-box}
+body{margin:0;background:
+  radial-gradient(1200px 500px at 80% -10%,#efe9ff 0,transparent 60%),
+  var(--bg);color:var(--ink);
+  font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:30px 18px 70px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 26px 22px;
+  box-shadow:0 12px 40px rgba(90,50,200,.07)}
+.kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.5px;color:#fff;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));padding:4px 11px;border-radius:20px}
+h1{font-size:30px;margin:14px 0 2px;letter-spacing:-.5px}
+.tag{font-size:17px;color:var(--muted);margin:0 0 14px}
+.tag b{color:var(--ink)}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.links a{font-size:13px;font-weight:600;background:#f3f0ff;border:1px solid var(--line);
+  padding:6px 12px;border-radius:10px}
+.sec-h{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--accent);
+  margin:34px 4px 12px}
+.builds{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:680px){.builds{grid-template-columns:1fr}}
+.build{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px}
+.build h3{margin:0 0 4px;font-size:15px}
+.build .stack{font-size:11.5px;color:var(--accent);font-weight:600;margin-bottom:8px}
+.build p{margin:0 0 10px;font-size:13px;color:#41404b}
+.metric{display:inline-block;font-size:12px;font-weight:700;background:#e8f9ee;color:#0f7a37;
+  border:1px solid #b9ecc9;border-radius:8px;padding:3px 8px;margin:2px 4px 0 0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:6px;
+  box-shadow:0 8px 30px rgba(90,50,200,.05)}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tab{cursor:pointer;font-size:13px;font-weight:700;padding:8px 14px;border-radius:10px;border:1px solid var(--line);
+  background:#f6f4ff;color:var(--muted)}
+.tab.active{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;border-color:transparent}
+.demo{display:none}.demo.active{display:block}
+.controls{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;margin-bottom:14px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:12px;font-weight:700;color:var(--muted)}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:#f6f4ff;padding:8px 13px;font-size:13px;font-weight:700;cursor:pointer;color:var(--muted)}
+.seg button.on{background:var(--accent);color:#fff}
+input[type=number]{width:90px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;font-size:14px}
+input[type=text]{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th,td{padding:8px 9px;border-bottom:1px solid var(--line);text-align:left}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.win{background:#f0fff6}
+tr.win td{font-weight:700}
+.pill{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;background:#ede8ff;color:var(--accent)}
+.result{margin-top:14px;background:linear-gradient(90deg,#f4f0ff,#faf7ff);border:1px solid var(--line);
+  border-radius:12px;padding:14px 16px}
+.result .big{font-size:19px;font-weight:800}
+.result .row{display:flex;flex-wrap:wrap;gap:18px;margin-top:8px;font-size:13.5px}
+.result .row b{color:var(--accent)}
+.btn{cursor:pointer;border:0;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;
+  font-weight:700;font-size:14px;padding:10px 18px;border-radius:11px}
+.note{font-size:12px;color:var(--muted);margin-top:10px}
+.plan{margin-top:14px}
+.step{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--line)}
+.step .n{flex:0 0 24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center}
+.route{font-size:13px;margin-top:10px}
+.route b{color:var(--accent)}
+footer{margin-top:34px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+code{background:#f1eefc;color:var(--accent);padding:1px 6px;border-radius:6px;font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <span class="kicker">PROTOTYPE / VISITING CARD · for SmartCat</span>
+    <h1>Aleksandr Borisov</h1>
+    <p class="tag"><b>AI Solutions Builder.</b> I turn ambiguous business problems into <b>working AI tools</b> — for sales-pipeline intelligence, operational reporting, and executive decision support. Finance leader (20y) turned AI builder.</p>
+    <div class="links">
+      <a href="mailto:aleandr.g@gmail.com">✉ aleandr.g@gmail.com</a>
+      <a href="https://t.me/Aleksandr_G_Borisov" target="_blank">✈ Telegram</a>
+      <a href="https://github.com/AleksandrBorisovDS/projects_yandex_practicum" target="_blank">💻 GitHub</a>
+      <a href="https://www.linkedin.com/mwlite/in/aleksandr-borisov-b484706" target="_blank">in LinkedIn</a>
+    </div>
+    <p class="note" style="margin-top:12px">Russian (native) · English (B2) · Spanish (B1) · Full remote (UTC−3). The demos below run entirely in your browser — no server, no API key.</p>
+  </div>
+
+  <div class="sec-h">Three AI systems I built solo, from scratch</div>
+  <div class="builds">
+    <div class="build">
+      <h3>Autonomous voice agent</h3>
+      <div class="stack">TypeScript · Bitrix24 API · SIP · Claude · STT/TTS</div>
+      <p>Calls warm leads, runs the conversation, and writes results + deal stage back to CRM. Agentic: tool use, call-state memory, multi-step.</p>
+      <span class="metric">25 → 100+ leads/day</span><span class="metric">built in 2 weeks</span>
+    </div>
+    <div class="build">
+      <h3>Order & supplier automation</h3>
+      <div class="stack">Bitrix24 forms · data pipelines</div>
+      <p>One input (priority) → system picks the optimal supplier and computes cost, route, and timing. <b>Live demo below.</b></p>
+      <span class="metric">2 wks → 30 min</span><span class="metric">margin +80%</span>
+    </div>
+    <div class="build">
+      <h3>AI contract reviewer</h3>
+      <div class="stack">ChatGPT project</div>
+      <p>Upload a contract → instant disagreement protocol + concede/negotiate/never-accept table.</p>
+      <span class="metric">1.5 mo → 2 wks</span><span class="metric">CSAT up</span>
+    </div>
+  </div>
+
+  <div class="sec-h">Try it — two mini-tools I'd build for internal use</div>
+  <div class="panel">
+    <div class="tabs">
+      <div class="tab active" data-t="opt">⚙️ Supplier &amp; Cost Engine</div>
+      <div class="tab" data-t="router">🧭 Ops Question Router</div>
+    </div>
+
+    <!-- DEMO 1: Supplier optimizer -->
+    <div class="demo active" id="opt">
+      <div class="controls">
+        <div class="field">
+          <label>Optimize for</label>
+          <div class="seg" id="prio">
+            <button class="on" data-p="price">Lowest price</button>
+            <button data-p="lead">Fastest delivery</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Quantity (units)</label>
+          <input type="number" id="qty" value="120" min="1">
+        </div>
+        <div class="field">
+          <label>Client target price / unit ($)</label>
+          <input type="number" id="target" value="47" min="0" step="0.5">
+        </div>
+        <button class="btn" id="run">Optimize →</button>
+      </div>
+      <table id="suptable">
+        <thead><tr><th>Supplier</th><th>Region</th><th class="num">Unit $</th><th class="num">Lead (days)</th><th class="num">Reliability</th><th class="num">Score</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="result" id="optResult"></div>
+      <p class="note">Deterministic engine — the same selection logic I shipped at EDELWEISS, reimplemented client-side. Score blends price, lead time and reliability, weighted by your chosen priority; margin is computed against the client target.</p>
+    </div>
+
+    <!-- DEMO 2: router -->
+    <div class="demo" id="router">
+      <div class="field" style="margin-bottom:12px">
+        <label>Ask an operations / finance question</label>
+        <input type="text" id="q" placeholder="e.g. Which suppliers are hurting our margin this quarter?">
+      </div>
+      <button class="btn" id="route">Plan it →</button>
+      <div id="routeOut"></div>
+      <p class="note">Rule-based router (no API key) — a stand-in for the agentic layer I build: it classifies intent and drafts the tool-chain an AI agent would run. With an LLM behind it, each step becomes an executed action. Try words like <i>margin, contract, forecast, lead, competitor, cash</i>.</p>
+    </div>
+  </div>
+
+  <footer>
+    <b>Why this maps to the role.</b> The AI Solutions Builder brief asks for someone who builds AI-powered internal tools for sales-pipeline analysis, operational reporting, and executive decision support — end-to-end, in the Office of the CEO. The two tools above are miniature, honest versions of exactly that, and I've shipped their full-scale counterparts in production.<br><br>
+    Runnable code sample: <code>agent_demo.py</code> in this repo — an executive-decision-support agent pattern (rules + optional LLM) that runs with no API key.<br>
+    © 2026 Aleksandr Borisov · built as a prototype for SmartCat.
+  </footer>
+</div>
+
+<script>
+/* ---------- Demo 1: Supplier & Cost Engine ---------- */
+const SUPPLIERS = [
+  {name:"NordTech GmbH", region:"EU",  price:44.0, lead:12, rel:0.98},
+  {name:"Baltia Supply", region:"EU",  price:46.5, lead:7,  rel:0.95},
+  {name:"Shenzhen Wuxi", region:"CN",  price:38.0, lead:26, rel:0.90},
+  {name:"Anatolia Trade",region:"TR",  price:42.0, lead:16, rel:0.93},
+];
+let priority = "price";
+
+function norm(arr, key, invert){
+  const vals = arr.map(s=>s[key]); const mn=Math.min(...vals), mx=Math.max(...vals);
+  return v => mx===mn ? 1 : (invert ? (mx-v)/(mx-mn) : (v-mn)/(mx-mn));
+}
+function scoreAll(){
+  const np = norm(SUPPLIERS,"price",true);   // cheaper = better
+  const nl = norm(SUPPLIERS,"lead",true);     // faster = better
+  const w = priority==="price" ? {p:0.6,l:0.2,r:0.2} : {p:0.2,l:0.6,r:0.2};
+  return SUPPLIERS.map(s=>{
+    const score = w.p*np(s.price) + w.l*nl(s.lead) + w.r*s.rel;
+    return {...s, score:+(score*100).toFixed(1)};
+  }).sort((a,b)=>b.score-a.score);
+}
+function renderTable(){
+  const rows = scoreAll();
+  const best = rows[0];
+  document.querySelector("#suptable tbody").innerHTML = rows.map(s=>
+    `<tr class="${s.name===best.name?'win':''}"><td>${s.name===best.name?'★ ':''}${s.name}</td>
+     <td>${s.region}</td><td class="num">$${s.price.toFixed(2)}</td>
+     <td class="num">${s.lead}</td><td class="num">${Math.round(s.rel*100)}%</td>
+     <td class="num">${s.score}</td></tr>`).join("");
+  return best;
+}
+function runOpt(){
+  const best = renderTable();
+  const qty = Math.max(1, +document.getElementById("qty").value||1);
+  const target = +document.getElementById("target").value||0;
+  const total = best.price*qty;
+  const revenue = target*qty;
+  const margin = revenue>0 ? ((revenue-total)/revenue*100) : 0;
+  const eta = new Date(Date.now()+best.lead*864e5).toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+  const mColor = margin>=15?'var(--ok)':margin>=0?'var(--warn)':'#c0392b';
+  document.getElementById("optResult").innerHTML =
+    `<div class="big">Optimal supplier: ${best.name} <span class="pill">${priority==='price'?'lowest price':'fastest delivery'}</span></div>
+     <div class="row">
+       <div>Final cost: <b>$${total.toLocaleString(undefined,{maximumFractionDigits:0})}</b> <span class="note">(${qty} × $${best.price.toFixed(2)})</span></div>
+       <div>Route: <b>${best.region} → client</b></div>
+       <div>ETA: <b>${eta}</b> <span class="note">(${best.lead} days)</span></div>
+       <div>Margin vs target: <b style="color:${mColor}">${margin.toFixed(1)}%</b></div>
+     </div>`;
+}
+document.querySelectorAll("#prio button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll("#prio button").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on"); priority=b.dataset.p; runOpt();
+}));
+document.getElementById("run").addEventListener("click", runOpt);
+["qty","target"].forEach(id=>document.getElementById(id).addEventListener("input", runOpt));
+
+/* ---------- Demo 2: Ops Question Router ---------- */
+const ROUTES = [
+  {kw:["margin","profit","profitab","unit econom"], tool:"Margin & Unit-Economics agent",
+   steps:["Pull orders + costs from CRM/ERP","Compute per-order & per-supplier margin","Rank margin leakage by supplier / SKU","Draft an exec summary with the 3 biggest levers"]},
+  {kw:["contract","legal","terms","clause"], tool:"Contract-review agent",
+   steps:["Ingest the contract PDF","Extract clauses & compare to our policy","Produce a concede / negotiate / never-accept table","Flag deal-breakers for sign-off"]},
+  {kw:["forecast","predict","next month","demand","trend"], tool:"Forecasting agent",
+   steps:["Assemble the historical time series","Fit a forecast (seasonality-aware)","Attach confidence bands","Surface the assumptions to challenge"]},
+  {kw:["lead","pipeline","call","sales","conversion"], tool:"Pipeline / voice agent",
+   steps:["Segment warm leads by intent","Auto-call or auto-message top segment","Interpret replies & update deal stage in CRM","Report connect & conversion rates"]},
+  {kw:["competitor","market","price benchmark","rival"], tool:"Competitive-intelligence agent",
+   steps:["Fire automated RFQs / scrape offers","Compute market min / avg / max price","Position us vs the market","Recommend a discount-policy move"]},
+  {kw:["cash","liquidity","receivab","payab","treasury"], tool:"Treasury / cash agent",
+   steps:["Aggregate AR / AP & due dates","Project the 13-week cash runway","Flag overdue receivables","Propose a payment-priority plan"]},
+];
+function routeQ(){
+  const q = (document.getElementById("q").value||"").toLowerCase();
+  if(!q.trim()){ document.getElementById("routeOut").innerHTML=""; return; }
+  let hit = ROUTES.find(r=>r.kw.some(k=>q.includes(k))) || {
+    tool:"General decision-support agent",
+    steps:["Clarify the decision & the precision it needs","Gather the minimal data to answer it","Compute the answer + one sanity check","Return a recommendation, not just a chart"]};
+  document.getElementById("routeOut").innerHTML =
+    `<div class="route">Routed to → <b>${hit.tool}</b></div>
+     <div class="plan">${hit.steps.map((s,i)=>`<div class="step"><div class="n">${i+1}</div><div>${s}</div></div>`).join("")}</div>`;
+}
+document.getElementById("route").addEventListener("click", routeQ);
+document.getElementById("q").addEventListener("keydown", e=>{ if(e.key==="Enter") routeQ(); });
+
+/* tabs */
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".demo").forEach(x=>x.classList.remove("active"));
+  t.classList.add("active"); document.getElementById(t.dataset.t).classList.add("active");
+}));
+
+runOpt();
+</script>
+</body>
+</html>
