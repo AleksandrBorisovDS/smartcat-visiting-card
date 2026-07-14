@@ -26,22 +26,4 @@ Vanilla HTML/CSS/JS (no build step, GitHub-Pages-ready) · Python 3 (standard li
 ## Contact
 ✉ aleandr.g@gmail.com · ✈ Telegram [@Aleksandr_G_Borisov](https://t.me/Aleksandr_G_Borisov) · 💻 [GitHub](https://github.com/AleksandrBorisovDS/projects_yandex_practicum) · Russian (native) / English (B2) / Spanish (B1) · full remote (UTC−3)
 
----
 
-## How to publish (≈3 minutes)
-
-1. Create a new **public** repo on GitHub named `smartcat-visiting-card`.
-2. Upload the three files in this folder (`index.html`, `agent_demo.py`, `README.md`) — either drag-and-drop in the GitHub web UI, or:
-   ```bash
-   git init
-   git add index.html agent_demo.py README.md
-   git commit -m "AI Solutions Builder visiting card"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/smartcat-visiting-card.git
-   git push -u origin main
-   ```
-3. In the repo: **Settings → Pages → Source: `main` / root → Save.**
-4. Wait ~1 minute; your live link is `https://<your-username>.github.io/smartcat-visiting-card/`.
-5. Paste that link into the "Live demo" line above and into your application / cover letter.
-
-> Note: publishing requires signing in to your own GitHub account, so that last step is yours to do — everything here is ready to upload as-is.
